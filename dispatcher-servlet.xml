@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:aop="http://www.springframework.org/schema/aop"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:p="http://www.springframework.org/schema/p"
+xmlns:util="http://www.springframework.org/schema/util"
+xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+http://www.springframework.org/schema/aop 
+http://www.springframework.org/schema/aop/spring-aop-2.5.xsd
+http://www.springframework.org/schema/context 
+http://www.springframework.org/schema/context/spring-context-2.5.xsd
+http://www.springframework.org/schema/util 
+http://www.springframework.org/schema/util/spring-util-2.5.xsd">
+
+<bean id="viewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="prefix" value="/"/>
+	<property name="suffix" value=".jsp"/>
+</bean>
+
+<!-- 어노테이션 사용 설정 -->
+<context:component-scan base-package="*" scoped-proxy="no"/>
+
+<!-- 어노테이션 컨트롤러 등록 -->
+<bean class="org.springframework.web.servlet.mvc.annotation.DefaultAnnotationHandlerMapping" p:alwaysUseFullPath="true">
+	<property name="order" value="1"/>
+</bean>
+
+<!-- 파일 업로드 
+<bean id="multipartResolver" 
+class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+	<property name="defaultEncoding" value="UTF-8"/>
+	<property name="maxUploadSize" value="10000000"/>
+</bean>
+ -->
+
+
+
+<!-- <bean id="beanNameUrlMapping" class="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping"/>
+
+<bean name="/test/msg.action" class="com.test.TestController"/>
+
+<bean id="simpleUrlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+	<property name="order" value="2"/>
+	<property name="alwaysUseFullPath" value="true"/>
+	<property name="mappings">
+		<props>
+			<prop key="/test/write.action">listFormController</prop>
+			<prop key="/test/write_ok.action">listController</prop>
+			<prop key="/test1/logins.action">loginController</prop>
+			<prop key="/test2/mem.action">memController</prop>
+			<prop key="/multi/*.action">multiTestController</prop>
+		</props>
+	</property>
+</bean>
+
+
+
+test3
+제어의 역전
+<bean id="propsResolver" class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+	<property name="mappings">
+		<props>
+			<prop key="/multi/list.action">list</prop>
+			<prop key="/multi/view.action">view</prop>
+		</props>
+	</property>
+</bean>
+
+
+<bean name="multiTestController" class="com.test3.MultiTestController">
+	<property name="methodNameResolver" ref="propsResolver"/>
+</bean>
+
+
+
+
+test2
+
+<bean name="memController" class="com.test2.MemController">
+	<property name="pages">
+		<list>
+			<value>test2/mem1</value> index 0
+			<value>test2/mem2</value> index 1
+			<value>test2/mem3</value> index 2	
+		</list>
+	</property>
+</bean>
+
+
+
+
+test1
+제어의 역전
+의존성주입을 위한 객체생성
+<bean name="authenticator-ref" class="com.test1.LoginAuthenticatorImpl"/>
+
+객체생성
+<bean name="loginController" class="com.test1.LoginController">
+	<property name="authenticator" ref="authenticator-ref"/>
+	<property name="commandName" value="loginCommand"/>
+	<property name="commandClass" value="com.test1.ListCommand"/>
+	<property name="formView" value="test1/login"/>
+</bean>
+
+
+
+객체생성
+<bean name="listFormController" class="com.test.ListFormController"/>
+<bean name="listController" class="com.test.ListController"/>
+
+
+-->
+
+
+
+
+
+</beans> 
